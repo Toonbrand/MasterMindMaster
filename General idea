@@ -1,0 +1,22 @@
+Based on:
+https://en.wikipedia.org/wiki/Mastermind_(board_game)#Five-guess_algorithm
+
+1 Make list C of possible combinations 	(colors^spots)
+2 Play 1122 P
+3 Read user input I						(black = correct color & place, white = correct color & wrong place)
+4 If won, stop game
+5 Remove invalid combinations from list	(if the solution would be C what pegs would 1122 get? If those pegs != I, remove C from list)
+6 Play next possible move from list
+7 Repeat 3
+
+Main class:
+	Listens to user input and loops 3 to 7 until won
+	
+CombinationList:
+	Generates list of combinations based on colors and spots
+	Updates list to remove invalid combinations
+	
+Comparer:
+	Takes two color sets and provides pegs
+	
+RGBPYC
