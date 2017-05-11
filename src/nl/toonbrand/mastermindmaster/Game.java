@@ -1,15 +1,15 @@
 package nl.toonbrand.mastermindmaster;
 
 public class Game {
-	private final int SPOTS = 4;
-	final String COLORS = "123456";
+	private static final int SPOTS = 4;
+	private static final String[] COLORS = {"Blue", "Red", "Green", "Cyan", "Yellow", "Purple"};
 	Combinations comb;
-
-	public Game(){
-		this.comb = new Combinations(COLORS, SPOTS);
-	}
 	
+	/*
+	 * Start the game
+	 */
 	public void play(){
+		this.comb = new Combinations(COLORS, SPOTS);
 		
 	}
 }
