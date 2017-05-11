@@ -32,5 +32,8 @@ public class Combinations {
 		this.combinations = combinations;
 	}
 
+	public void updateCombinations(ArrayList<String> comb){
+		
+	}
 	
 }
