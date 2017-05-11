@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Game {
 	private static final int SPOTS = 4;
-	private static final String[] COLORS = {"Blue", "Red", "Green", "Cyan", "Yellow", "Purple"};
+	private static final String COLORS = "brgcyp";
 	Combinations comb;
 	
 	/*
@@ -12,40 +12,43 @@ public class Game {
 	 */
 	public void play(){
 		this.comb = new Combinations(COLORS, SPOTS);
+		
+		ArrayList<String> test = new ArrayList<>();
+		test.add("bbbb");
+		comb.removeCombinations(test);
+		System.out.println(comb.getCombinations());
+		System.out.println(judgeAttempt("aadd", "adad"));
 	}
 		
 	/*
 	 * Gives a response in black and white pins based on an attempt and solution
 	 */
-	public String judgeAttempt(ArrayList<String> attempt, ArrayList<String> solution){
-		String judgement = "";
+	public String judgeAttempt(String attempt, String solution){
+		String judgement, attemptB, solutionB;
+		judgement = attemptB = solutionB = "";
 		
 		/*
 		 * check for white pins
 		 */
-		for(int i=0;i<attempt.size();i++){
-			if(attempt.get(i).equals(solution.get(i))){
+		for(int i=0;i<attempt.length();i++){
+			if(attempt.charAt(i)==(solution.charAt(i))){
 				judgement=judgement+"w";
-				attempt.remove(i);
-				solution.remove(i);
-				i--;
+			}
+			else{
+				attemptB=attemptB+attempt.charAt(i);
+				solutionB=solutionB+solution.charAt(i);
 			}
 		}
-		
+				
 		/*
 		 * check for black pins
 		 */
-		for(int i=0;i<attempt.size();i++){
-			for(int j=0;j<solution.size();j++){
-				if(attempt.get(i).equals(solution.get(j))){
-					judgement=judgement+"b";
-					attempt.remove(i);
-					solution.remove(j);
-					i--;
-					j--;
-				}
-			}
-		}
+		 for (int i = 0; i < attemptB.length(); i++) {
+	            char ch = attemptB.charAt(i);
+	             if (solutionB.indexOf(ch) != -1){
+	                 judgement=judgement+"b";
+	             }
+	        }
 		return judgement;
 	}
 }

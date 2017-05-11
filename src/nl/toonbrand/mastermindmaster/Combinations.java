@@ -3,37 +3,46 @@ package nl.toonbrand.mastermindmaster;
 import java.util.ArrayList;
 
 public class Combinations {
-	ArrayList<ArrayList<String>> combinations = new ArrayList<>();
+	ArrayList<String> combinations = new ArrayList<>();
 
-	public Combinations(String[] colors, int spots) {
-		fillList(colors, spots, new ArrayList<String>());
+	public Combinations(String colors, int spots) {
+		fillList(colors.toCharArray(), spots, "");
 	}
 
 	/*
 	 * Fill a list with all possible color combinations using recursion
 	 */
-	void fillList(String[] colors, int spots, ArrayList<String> start){
-		if(start.size() >= spots){
+	void fillList(char[]colors, int spots, String start){
+		if(start.length() >= spots){
 			combinations.add(start);
 		}else{
-			for(String s : colors){
-				ArrayList<String> ar = new ArrayList<>(start);
-				ar.add(s);
-				fillList(colors, spots, ar);
+			for(char c : colors){
+				fillList(colors, spots, start+c);
 			}
 		}
 	}
 
-	public ArrayList<ArrayList<String>> getCombinations() {
+	public ArrayList<String> getCombinations() {
 		return combinations;
 	}
 
-	public void setCombinations(ArrayList<ArrayList<String>> combinations) {
+	public void setCombinations(ArrayList<String> combinations) {
 		this.combinations = combinations;
 	}
 
-	public void updateCombinations(ArrayList<String> comb){
-		
+	/*
+	 * Remove possible combinations from Combinations
+	 */
+	public void removeCombinations(ArrayList<String> combinations){
+		ArrayList<String> temp = new ArrayList<>(this.combinations);
+		for(String s : this.combinations){
+			for(String c : combinations){
+				if(s.equals(c)){
+					temp.remove(temp.indexOf(c));
+				}
+			}
+		}
+		this.combinations=temp;
 	}
-	
+
 }
